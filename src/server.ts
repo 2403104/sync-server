@@ -84,14 +84,14 @@ syncWss.on("connection", (ws: WebSocket) => {
 async function bootstrap(): Promise<void>  {
   await connectMongo();
   // await connectRedis();
-  // server.listen(PORT, () => {
-  //   console.log(`[Server] Listening on port ${PORT}`);
-  // });
-  server.listen({ port: Number(PORT), host: '0.0.0.0' }, () => {
+  server.listen(PORT, () => {
     console.log(`[Server] Listening on port ${PORT}`);
-    console.log(`[Server] Live WS endpoint: ws://localhost:${PORT}/live`);
-    console.log(`[Server] Sync WS endpoint: ws://localhost:${PORT}/sync`);
   });
+  // server.listen({ port: Number(PORT), host: '0.0.0.0' }, () => {
+  //   console.log(`[Server] Listening on port ${PORT}`);
+  //   console.log(`[Server] Live WS endpoint: ws://localhost:${PORT}/live`);
+  //   console.log(`[Server] Sync WS endpoint: ws://localhost:${PORT}/sync`);
+  // });
   const shutdown = async (signal : string) => {
     console.log(`[Server] ${signal} — shutting down...`);
     liveWss.close();
